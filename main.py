@@ -6,11 +6,8 @@ def main():
     choice = input("1.Remove all friends\n2.Remove all messages in a channel\n3.Leave all servers\n4.Everything\n5.Exit\n")
     token = input("Enter your token: ")
     session = requests.Session()
-    session.headers.update({"Authorization": token})
-    session.headers.update({"Content-Type": "application/json"})
+    session.headers.update({"authorization": token})
     session.headers.update({"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"})
-    session.headers.update({"Accept": "*/*"})
-    session.headers.update({"Accept-Language": "en-US"})
     if choice == "1":
         print("Removing all friends...")
         remove_friends(session)
@@ -68,6 +65,7 @@ def leave_servers(session):
             print(f"Left {i['id']}")
         else:
             print(f"Failed to leave {i['id']}")
+            print(r.status_code)
     print("Finished.")   
 
 if __name__ == "__main__":
